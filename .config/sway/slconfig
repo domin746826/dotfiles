@@ -1,0 +1,7 @@
+image=~/.sway/wallpaper.jpg
+indicator-thickness=12
+indicator-radius=160
+inside-color=000000bb
+line-color=00000000
+ring-color=55555544
+key-hl-color=ddddddee
