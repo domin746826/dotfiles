@@ -18,12 +18,17 @@ set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | bemenu-run | xargs swaymsg exec --
+#set $menu dmenu_path | dmenu | xargs swaymsg exec --
+#set $menu bemenu-run | xargs swaymsg exec --
+set $menu wofi -s ~/.config/wofi.css --show drun -I
 
+
+font pango:Hack Medium 10
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/.config/sway/wallpaper.jpg fill
+#output * max_render_time 4 bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * max_render_time 9 bg /home/domin/.config/wallpaper.jpg fill
 #
 # Example configuration:
 #
@@ -31,15 +36,13 @@ output * bg ~/.config/sway/wallpaper.jpg fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-#output HDMI-A-1 resolution 1440x900 position 1440,0
-
 ### Idle configuration
 #
 # Example configuration:
 #
 # exec swayidle -w \
 #          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
 #          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -60,7 +63,20 @@ output * bg ~/.config/sway/wallpaper.jpg fill
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+input type:keyboard {
+    xkb_layout pl
+}
 
+
+input type:pointer {
+	events enabled
+	pointer_accel -0.5
+	accel_profile adaptive
+	natural_scroll disabled
+	left_handed disabled
+	scroll_factor 1
+	middle_emulation disabled
+}
 
 ### Key bindings
 #
@@ -199,7 +215,7 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
+xwayland enable
 
 #
 # Status Bar:
@@ -207,34 +223,45 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 #bar {
 #    position top
-
+#
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    # status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-#    status_command while ~/.config/sway/status.sh; do sleep 0.2; done
+#    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
 
 #    colors {
 #        statusline #ffffff
-#        background #22222266
-#        inactive_workspace #323232ff #323232ff #4444ff
-#        focused_workspace #222222ff #222222 #6666ff
+#        background #323232
+#        inactive_workspace #32323200 #32323200 #5c5c5c
 #    }
 #}
 
-bar swaybar_command waybar
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +4%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -4%
 
+exec /usr/lib/xfce-polkit/xfce-polkit
+exec nm-applet
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec mako
+exec waybar
 
-default_border pixel 1
-gaps inner 12
-gaps outer -12
+bindsym Print exec grim -g "$(slurp -d)" - | wl-copy
+
+for_window [app_id="firefox" workspace="^(?!.*.*$)"] mark --add f
+for_window [app_id="firefox"] floating enable, border normal
+for_window [con_mark="^f$"] floating disable, border none
+for_window [app_id="xfce-polkit"] floating enable, border none
+#for_window [app_id="nemo"] floating enable, border pixel 5
+
+default_border pixel 0
+#for_window [floating] default_border pixel 5
+#for_window [tiling] default_border pixel 5
 titlebar_border_thickness 0
-xwayland enable
-bindsym print exec grim -g "$(slurp -d)" - | wl-copy
-input 1:1:AT_Translated_Set_2_keyboard  xkb_layout pl
-#opacity set 0.5
 
-bindsym $mod+p exec grim -g "$(slurp -d)" - | wl-copy
-font pango:Noto Sans Serif 10
+#titlebar_separator disable
 
+
+client.focused #222222 #222222 #dddddd
+client.unfocused #222222 #222222 #6f6f6f
 
 include /etc/sway/config.d/*

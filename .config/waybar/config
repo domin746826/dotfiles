@@ -1,83 +1,113 @@
 {
-    "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar at the bottom of your screen
-    "height": 24, // Waybar height
-    // "width": 1366, // Waybar width
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+    //"width": 1350,
+    "margin": "0, 0, 0, 0",
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/spotify"],
+    "modules-left": ["sway/workspaces","sway/mode","custom/separator", "cpu","memory", "temperature","custom/separator","network"],
     "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "tray", "clock"],
+    "modules-right": [ 
+        "pulseaudio",
+        "battery",
+        "tray",
+        "clock"
+        ],
+
+
+
+    // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
-        "all-outputs": false,
-        "format": "{icon}",
-        "format-icons": {
-            "1:web": "",
-            "2:code": "",
-            "3:term": "",
-            "4:work": "",
-            "5:music": "",
-            "6:docs": "",
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
+        "all-outputs": true,
+        
+    },
+    
+
+    "custom/separator": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
+    
     "tray": {
-        // "icon-size": 21,
-        "spacing": 10
+        "icon-size": 20,
+        "spacing": 6
     },
     "clock": {
-        "format-alt": "{:%Y-%m-%d}"
+        "interval": 1,
+        "locale": "C", 
+        "format": " {:%I:%M %p}",
+        "format-alt": " {:%a,%b %d}" // Icon: calendar-alt
     },
     "cpu": {
-        "format": "{usage}% "
+        "format": "&#8239;{usage}%",
+        "tooltip": false,
+        "on-click": "~/.config/waybar/floating.sh foot vtop"
     },
     "memory": {
-        "format": "{}% "
+        "interval": 30,
+        "format": " {used:0.2f}GB",
+
+        "max-length": 10,
+        "tooltip": false,
+        "warning": 70,
+        "critical": 90
     },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{icon}&#8239;{temperatureC}°C",
+        "format-icons": ["", "", ""]
+    },
+
     "battery": {
-        "bat": "BAT0",
         "states": {
             // "good": 95,
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
+        "format": "{icon}&#8239;{capacity}%",
+        "format-charging": "&#8239;{capacity}%",
+        "format-plugged": "&#8239;{capacity}%",
+        "format-alt": "{icon} {time}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
+        // "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-disconnected": "Disconnected ⚠"
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "&#8239;({signalStrength}%)",
+        "format-ethernet": "&#8239;{ifname}: {ipaddr}/{cidr}",
+        "format-linked": "&#8239;{ifname} (No IP)",
+        "format-disconnected": "✈&#8239;Disconnected",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{essid}: {ipaddr}"
     },
     "pulseaudio": {
-        //"scroll-step": 1,
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "custom/spotify": {
-        "format": " {}",
-        "max-length": 40,
-        "interval": 30, // Remove this if your script is endless and write in loop
-        "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
-        "exec-if": "pgrep spotify"
+      // "scroll-step": 1, // %, can be a float
+      "format": "{icon} {volume}% {format_source}",
+      "format-bluetooth": "{icon} {volume}% {format_source}",
+      "format-bluetooth-muted": " {format_source}",
+      "format-muted": "  {format_source}",
+      "format-source": " {volume}%",
+      "format-source-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "🎧",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+      },
+      "on-click": "pavucontrol"
     }
+    
 }
