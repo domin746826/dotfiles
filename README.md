@@ -1,3 +1,3 @@
 # dotfiles
 
-swaywm, swaybar, slock, foot, nvim
+Minimal configuration on sway, waybar, foot, nvim and wofi
