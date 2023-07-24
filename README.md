@@ -20,7 +20,7 @@ Then move all files in .config to your .config directory
 \
 Below are AUR packages used on my laptop to run these dotfiles (should work fine on most NVIDIA laptops). Sway/Wayland is known to have issues with nvidia and these packages are mainly to make sway work with vulkan and nvidia gpu. Vulkan and wayland-related packages shouldn't be here but since it took me a long time to resolve sway+vulkan+nvidia conflict I've put it here anyway if anyone had similar problem:\
 \
-``sway-git wlroots-git waybar mako foot grim slurp egl-wayland wl-clipboard swaybg-git vulkan-icd-loader-git vulkan-headers-git vulkan-extra-layers vulkan-mesa-layers vulkan-validation-layers vulkan-intel vulkan-tools``
+``sway-git wlroots-git nemo wofi waybar mako foot grim slurp egl-wayland wl-clipboard swaybg-git vulkan-icd-loader-git vulkan-headers-git vulkan-extra-layers vulkan-mesa-layers vulkan-validation-layers vulkan-intel vulkan-tools``
 
 ## Running
 ```bash
