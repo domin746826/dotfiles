@@ -39,5 +39,5 @@ export WLR_DRM_NO_ATOMIC=1
 export WLR_NO_HARDWARE_CURSORS=1
 ```
 \
-![alt text](https://github.com/domin746826/dotfiles/blob/main/screenshots/screenshot2.png?raw=true)
 ![alt text](https://github.com/domin746826/dotfiles/blob/main/screenshots/screenshot3.png?raw=true)
+![alt text](https://github.com/domin746826/dotfiles/blob/main/screenshots/screenshot4.png?raw=true)
