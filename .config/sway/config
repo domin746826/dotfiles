@@ -23,12 +23,14 @@ set $term foot
 set $menu wofi -s ~/.config/wofi.css --show drun -I
 
 
-font pango:Hack Medium 10
+#font pango:Hack Medium 10
+
+#font pango:monospace 0
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 #output * max_render_time 4 bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * max_render_time 9 bg /home/domin/.config/wallpaper.jpg fill
+output * max_render_time 5 bg /home/domin/.config/sway/wallpaper2.jpg fill
 #
 # Example configuration:
 #
@@ -261,7 +263,11 @@ titlebar_border_thickness 0
 #titlebar_separator disable
 
 
-client.focused #222222 #222222 #dddddd
-client.unfocused #222222 #222222 #6f6f6f
+
+
+client.focused #222222 #272729 #dddddd
+client.unfocused #222222 #222224 #6f6f6f
+
+#for_window [class=".*"] opacity 0.7
 
 include /etc/sway/config.d/*

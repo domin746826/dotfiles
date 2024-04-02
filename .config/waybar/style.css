@@ -22,7 +22,7 @@
 
 window#waybar {
 
-    background-color: rgba(15, 15, 15, 0.4);
+    background-color: rgba(0, 0, 0, 0.75);
     /* border-bottom: 0px solid rgba(100, 114, 125, 0.5); */
     color: #ffffff;
     transition-property: background-color;
@@ -64,6 +64,7 @@ window#waybar.hidden {
     color: red;
 }
 
+
 #mode {
     background-color: #64727D;
     border-bottom: 1px solid #ffffff;
@@ -89,6 +90,8 @@ window#waybar.hidden {
     color: @fgcolor;
     background-color:transparent;
 }
+
+
 
 #window,
 #workspaces {
@@ -133,6 +136,12 @@ label:focus {
     color: @accent1;
 }
 
+#cpu :hover
+{
+  color: black;
+
+    background: rgba(0, 0, 0, 0.2);
+}
 #memory {
     color: #86e2d5;
 }
