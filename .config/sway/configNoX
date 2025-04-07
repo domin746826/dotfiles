@@ -22,6 +22,7 @@ set $term footclient
 #set $menu bemenu-run | xargs swaymsg exec --
 #set $menu wofi -s ~/.config/wofi.css --show drun -I
 set $menu /home/domin/.config/rofi/launchers/type-4/launcher.sh 
+#
 
 
 #font pango:Hack Medium 10
@@ -33,9 +34,7 @@ set $menu /home/domin/.config/rofi/launchers/type-4/launcher.sh
 #output * max_render_time 4 bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #output * max_render_time 15 bg /home/domin/.config/sway/wallpaper2.jpg fill
 #output * max_render_time off bg /home/domin/.config/sway/wallpapers/wallhaven-l88ker.jpg fill
-output * max_render_time off bg /home/domin/.config/sway/wallpapers/97911234_p0.jpg fill
-
-# output * max_render_time 12 bg /home/domin/giftest.gif fill
+output * max_render_time 15 bg /home/domin/.config/sway/wallpapers/97911234_p0.jpg fill
 #
 # Example configuration:
 #
@@ -61,7 +60,7 @@ output * max_render_time off bg /home/domin/.config/sway/wallpapers/97911234_p0.
 # Example configuration:
 #
 #   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dlwt enabled
+#       dwt enabled
 #       tap enabled
 #       natural_scroll enabled
 #       middle_emulation enabled
@@ -81,7 +80,7 @@ input type:pointer {
 	accel_profile adaptive
 	natural_scroll disabled
 	left_handed disabled
-	scroll_factor 0.4
+	scroll_factor 1
 	middle_emulation disabled
 }
 
@@ -246,7 +245,7 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-xwayland enable
+xwayland disable 
 
 #
 # Status Bar:
@@ -268,7 +267,6 @@ xwayland enable
 
 bar {
 swaybar_command waybar
-#swaybar_command ironbar
 # hidden_state hide
 #    mode hide
 #    modifier Mod4
@@ -281,19 +279,13 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -4%
 exec /usr/lib/xfce-polkit/xfce-polkit
 exec nm-applet
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-#exec mako
-exec swaync
+exec mako
 exec foot -s
-exec xava
-exec blueman-applet
+
 #bindsym Print exec grim -g "$(slurp -d)" - | wl-copy
 bindsym Print exec grim - | wl-copy
 bindsym Shift+Print exec grim -g "$(slurp -d)" - | wl-copy
-bindsym $mod+Print exec grim -g "$(slurp -d)" 
-bindsym $mod+n exec nemo
-bindsym $mod+c exec code --enable-proposed-api ms-python.python
-bindsym $mod+o exec /home/domin/.config/sway/lock.sh
-bindsym $mod+m exec firefox
+bindsym $mod+Print exec grim -g "$(slurp -d)" /home/domin/Obrazy/Screenshots/"$(date + %Y%m%d-%H%M%S)".png
 
 #for_window [app_id="firefox"] floating enable, border normal
 for_window [con_mark="^f$"] floating disable, border none
@@ -312,12 +304,12 @@ titlebar_border_thickness 0
 gaps outer 0px
 gaps inner 4px
 
-#corner_radius 10
-#layer_effects "waybar" corner_radius 10
-#layer_effects "foot" blur enable; shadows enable; corner_radius 12
+corner_radius 10
+layer_effects "waybar" corner_radius 10
+layer_effects "rofi" blur enable; shadows enable; corner_radius 12
 
-#shadow_color #0000007f
-#shadow_blur_radius 10
+shadow_color #0000007f
+shadow_blur_radius 10
 
 # shadow_offset 5 5
 client.focused #222222 #3c3e6d #eeeeee
@@ -326,6 +318,7 @@ client.unfocused #222222 #1e1f2e #6f6f6f
 
 #for_window [class=".*"] opacity 0.7
 
-for_window [app_id="footclient"] corner_radius 10; blur_radius 1 shadows enable;shadow_blur_radius 16; blur enable;
-for_window [app_id="wofi"]  corner_radius 10; #shadows enable; shadow_blur_radius 16;blur enable;
+for_window [app_id="footclient"] blur enable; corner_radius 10; shadows enable;shadow_blur_radius 16;
+for_window [app_id="rofi"] blur enable; corner_radius 10; shadows enable; shadow_blur_radius 16;
+
 include /etc/sway/config.d/*

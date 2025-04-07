@@ -30,12 +30,10 @@ set $menu /home/domin/.config/rofi/launchers/type-4/launcher.sh
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#output * max_render_time 4 bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#output * max_render_time 12 bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #output * max_render_time 15 bg /home/domin/.config/sway/wallpaper2.jpg fill
 #output * max_render_time off bg /home/domin/.config/sway/wallpapers/wallhaven-l88ker.jpg fill
-output * max_render_time off bg /home/domin/.config/sway/wallpapers/97911234_p0.jpg fill
-
-# output * max_render_time 12 bg /home/domin/giftest.gif fill
+output * max_render_time 15 bg /home/domin/.config/sway/wallpapers/97911234_p0.jpg fill
 #
 # Example configuration:
 #
@@ -61,7 +59,7 @@ output * max_render_time off bg /home/domin/.config/sway/wallpapers/97911234_p0.
 # Example configuration:
 #
 #   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dlwt enabled
+#       dwt enabled
 #       tap enabled
 #       natural_scroll enabled
 #       middle_emulation enabled
@@ -268,7 +266,6 @@ xwayland enable
 
 bar {
 swaybar_command waybar
-#swaybar_command ironbar
 # hidden_state hide
 #    mode hide
 #    modifier Mod4
@@ -284,15 +281,13 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 #exec mako
 exec swaync
 exec foot -s
-exec xava
-exec blueman-applet
+
+exec blueman_applet
 #bindsym Print exec grim -g "$(slurp -d)" - | wl-copy
 bindsym Print exec grim - | wl-copy
 bindsym Shift+Print exec grim -g "$(slurp -d)" - | wl-copy
-bindsym $mod+Print exec grim -g "$(slurp -d)" 
+bindsym $mod+Print exec grim -g "$(slurp -d)" /home/domin/Obrazy/Screenshots/"$(date + %Y%m%d-%H%M%S)".png
 bindsym $mod+n exec nemo
-bindsym $mod+c exec code --enable-proposed-api ms-python.python
-bindsym $mod+o exec /home/domin/.config/sway/lock.sh
 bindsym $mod+m exec firefox
 
 #for_window [app_id="firefox"] floating enable, border normal
@@ -312,12 +307,7 @@ titlebar_border_thickness 0
 gaps outer 0px
 gaps inner 4px
 
-#corner_radius 10
-#layer_effects "waybar" corner_radius 10
-#layer_effects "foot" blur enable; shadows enable; corner_radius 12
 
-#shadow_color #0000007f
-#shadow_blur_radius 10
 
 # shadow_offset 5 5
 client.focused #222222 #3c3e6d #eeeeee
@@ -326,6 +316,5 @@ client.unfocused #222222 #1e1f2e #6f6f6f
 
 #for_window [class=".*"] opacity 0.7
 
-for_window [app_id="footclient"] corner_radius 10; blur_radius 1 shadows enable;shadow_blur_radius 16; blur enable;
-for_window [app_id="wofi"]  corner_radius 10; #shadows enable; shadow_blur_radius 16;blur enable;
+
 include /etc/sway/config.d/*

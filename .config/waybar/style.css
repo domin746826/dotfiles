@@ -1,101 +1,115 @@
-@define-color critical #ff0000; /* critical color */
-@define-color warning #f3f809;  /* warning color */
-@define-color fgcolor #ffffff;  /* foreground color */
-@define-color bgcolor #303030;  /* background color */
-@define-color bgcolor #222436;  /* background color */
-@define-color alert   #df3320;
-
-@define-color accent1 #ff7a93;
-@define-color accent2 #b9f27c;
-@define-color accent3 #ff9e64;
-@define-color accent4 #bb9af7;
-@define-color accent5 #7da6ff;
-@define-color accent6 #0db9d7;
-
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    border: none;
-    font-family: "Noto Sans Serif";
-    /* Recommended font sizes: 720p: ~14px, 1080p: ~18px */
-    font-size: 14px;
+    font-family: MesloLGSDZ Nerd Font;
+    font-size: 18px;
+    
 }
 
 window#waybar {
-
-    background-color: rgba(0, 0, 0, 0.75);
-    /* border-bottom: 0px solid rgba(100, 114, 125, 0.5); */
+    background-color: rgba(0, 0, 0, 0);
+    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
     color: #ffffff;
-    transition-property: background-color;
     transition-duration: .5s;
-    border-radius: 0px;
+    transition: 0.3s;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
+
+/*
+window#waybar.empty {
+    background-color: transparent;
 }
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+
+
+
 
 #workspaces button {
-    padding: 0px;
-    margin: 2px 2px 2px 2px;
-    background-color: transparent;
-    color: #ffffff;
-    min-width: 36px;
-    border-radius: 4px;
+    padding: 1px 1px;
+    margin: 0px 1px;
+    border-radius: 10px;
+
+    border: 0px;
+    color: #9fa7cc;
+    background-color: #1a1b26;
+    opacity: 0.8;
 }
 
-#workspaces button.active {
-    padding: 0 0 0 0;
-    margin: 2px 0 2px 0;
-    background-color: #ddddff;
-    color: #303030;
-    min-width: 36px;
+#workspaces {
+    background: #1a1b26;
+    padding: 5px 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-style: normal;
+    opacity: 0.95;
+    font-size: 16px;
+    color: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.288) 2px 2px 5px 2px;
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+    color: #FFFFFF;
+    background: #545c7e;
+    opacity:0.8;
 }
 
 #workspaces button.focused {
-    background-color: #bbccdd;
-    color: #323232;
+    padding: 1px 1px;
+    margin: 0px 1px;
+    color: #c0caf5;
+    opacity: 0.8;
+    background: #2a2d3b;
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 5px 2px;
+  
 }
 
 #workspaces button.urgent {
-    color: red;
+    background-color: #eb4d4b;
 }
 
-
-#mode {
-    background-color: #64727D;
-    border-bottom: 1px solid #ffffff;
-}
 
 #clock,
 #battery,
 #cpu,
 #memory,
 #temperature,
-#backlight,
-#network,
 #pulseaudio,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#custom-power,
-#custom-pacman,
-#language {
-    padding: 0px 3px;
-    margin: 4px 3px 5px 3px;
-    color: @fgcolor;
-    background-color:transparent;
+#mpd {
+    padding: 0px 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 1px;
+  margin-left: 1px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.288) 2px 2px 5px 2px;
+  color:#9ab;
+  background:#1a1b26;
+  opacity: 0.8;
 }
-
-
 
 #window,
 #workspaces {
-    margin: 0 4px;
+    
+}
+
+#window {
+    padding: 2px 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    margin-left: 3px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.288) 2px 2px 5px 2px;
+    color: #9ab;
+    background: #1a1b26;
+    opacity: 0.95;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -109,127 +123,78 @@ window#waybar.hidden {
 }
 
 #clock {
-    color: #90ee90;
+    font-family: CaskaydiaCove Nerd Font; 
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    padding-top: 8px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 8px;
+    border-radius: 10px;
+    color:#7dcfff;
+    background:#1a1b26;
+    opacity: 0.8;
+    box-shadow: rgba(0, 0, 0, 0.288) 2px 2px 5px 2px;
 }
 
-#battery {
-    color: @accent5;
-}
 
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #333333;
-    }
-}
 
-#battery.critical:not(.charging) {
-    background-color: @critical;
-    color: @white;
-}
 
-label:focus {
-    background-color: #000000;
-}
 
-#cpu {
-    color: @accent1;
-}
 
-#cpu :hover
-{
-  color: black;
 
-    background: rgba(0, 0, 0, 0.2);
-}
-#memory {
-    color: #86e2d5;
-}
-
-#backlight {
-    color: @accent2;
-}
-
-#network {
-    color: @accent3;
-}
-
-#network.disconnected {
-    color: @alert;
-}
-
-#pulseaudio {
-    color: @accent4;
-}
-
-#pulseaudio.muted {
-    color: #a0a0a0;
-}
-
-#custom-power {
-    color: @accent6;
-}
-
-#custom-waylandvsxorg {
-    color: @accent5;
-}
-
-#custom-pacman {
-    color: @accent2;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#temperature {
-    color: @accent6;
-}
 
 #temperature.critical {
-    background-color: @critical;
+    background-color: #eb4d4b;
 }
 
-#tray {
-
+#tray,
+#custom-power {
+    font-family: CaskaydiaCove Nerd Font; 
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+  padding-right: 16px;
+  padding-left: 16px;
+  padding-bottom: 3px;
+  border-radius: 10px;
+  color:#9ab;
+  background:#1a1b26;
+  opacity: 0.9;
+  box-shadow: rgba(0, 0, 0, 0.288) 2px 2px 5px 2px;
+  font-size: 20px;
 }
 
-#idle_inhibitor {
-    background-color: #343434;
-    border-radius: 4px;
+
+
+#custom-power {
+    color: #e86b75;
+    padding-left: 15px;
+    margin-right: 5px;
+    padding-right: 5px;
 }
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
 
 #mpd {
-    color: #d1e231;
+    background-color: #66cc99;
+    color: #2a5c45;
 }
 
-#custom-language {
-    color: @accent5;
-    min-width: 16px;
+#mpd.disconnected {
+    background-color: #f53c3c;
 }
 
-#custom-separator {
-    color: #a0a0a0;
-    margin: 0 1px;
-    padding-bottom: 5px;
+#mpd.stopped {
+    background-color: #90b1b1;
 }
 
-#custom-wmname {
-    min-width: 36px;
-    font-size: 15px;
-}
-
-#custom-recorder,
-#custom-audiorec {
-    color: #c71585;
+#mpd.paused {
+    background-color: #51a37a;
 }

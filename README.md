@@ -1,6 +1,6 @@
 # dotfiles
 
-Minimal configuration on sway, waybar, foot, nvim and wofi
+Minimal configuration on sway, waybar, foot, nvim and rofi
 
 
 
@@ -10,16 +10,16 @@ For Arch Linux: use my script
 ./install.sh
 ```
 or install these packages with your favourite AUR packages installer (for example yay)\
-For other distros: install arc icon theme, fonts, and papirus icon theme\
+For other distros: install tokyonight theme, fonts, and tela icon theme\
 \
 Then move all files in .config to your .config directory
 
 
 #### Used fonts (as Arch Linux AUR packages): 
-``ttf-nerd-fonts-symbols otf-font-awesome ttf-font-awesome powerline-fonts noto-fonts-emoji noto-fonts noto-fonts-cjk ttf-hack``
+``ttf-nerd-fonts-symbols otf-font-awesome ttf-font-awesome powerline-fonts noto-fonts-emoji noto-fonts-lite noto-fonts-cjk ttf-hack ttf-iosevka``
 
 #### Used themes (as Arch Linux AUR packages):
-``epapirus-icon-theme arc-gtk-theme papirus-icon-theme``
+``tela-icon-theme-bin tokyonight-gtk-theme-git``
 
 \
 Below are AUR packages used on my laptop to run these dotfiles (should work fine on most NVIDIA laptops). Sway/Wayland is known to have issues with nvidia and these packages are mainly to make sway work with vulkan and nvidia gpu. Vulkan and wayland-related packages shouldn't be here but since it took me a long time to resolve sway+vulkan+nvidia conflict I've put it here anyway if anyone had similar problem:\
@@ -30,7 +30,7 @@ Below are AUR packages used on my laptop to run these dotfiles (should work fine
 ```bash
 ./swayStart.sh
 ```
-These dotfiles are optimized for my laptop as you can see in swayStart.sh. If sway doesn't work using ./swayStart.sh, remove these lines:
+These dotfiles are optimized for my Intel CPU + Nvidia GPU laptop as you can see in swayStart.sh. If sway doesn't work using ./swayStart.sh, remove these lines:
 ```bash
 export WLR_RENDERER=vulkan
 export _GL_GSYNC_ALLOWED=0
@@ -39,5 +39,4 @@ export WLR_DRM_NO_ATOMIC=1
 export WLR_NO_HARDWARE_CURSORS=1
 ```
 \
-![alt text](https://github.com/domin746826/dotfiles/blob/main/screenshots/screenshot3.png?raw=true)
-![alt text](https://github.com/domin746826/dotfiles/blob/main/screenshots/screenshot4.png?raw=true)
+![alt text](https://github.com/domin746826/dotfiles/blob/main/screenshots/screenshot5.png?raw=true)
